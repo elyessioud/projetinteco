@@ -1,0 +1,24 @@
+services:
+  Client1:
+    image: alpine:latest
+    networks:
+      - reseau1
+
+  Client2:
+    image: alpine:latest
+    networks:
+      - reseau2
+  
+  Router:
+    image: arbiza/quagga:latest
+    networks:
+      - reseau1
+      - reseau2
+      - bridge
+    
+networks:
+  # The presence of these objects is sufficient to define them
+  reseau1: {}
+  reseau2: {}
+  bridge:
+    driver: bridge
